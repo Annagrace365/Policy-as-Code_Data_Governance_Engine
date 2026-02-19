@@ -1,0 +1,85 @@
+{
+  "policies": [
+    {
+      "content_type": "Email",
+      "example": "abc@gmail.com",
+      "detection": {
+        "type": "regex",
+        "pattern": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+      },
+      "action": "Mask",
+      "masking_strategy": "partial"
+    },
+    {
+      "content_type": "Phone Number",
+      "example": "9876543210",
+      "detection": {
+        "type": "regex",
+        "pattern": "\\b(?:\\+91[-\\s]?)?[6-9]\\d{9}\\b"
+      },
+      "action": "Mask",
+      "masking_strategy": "partial"
+    },
+    {
+      "content_type": "ID / Card Number",
+      "example": "1234 5678 9012 3456",
+      "detection": {
+        "type": "regex",
+        "pattern": "\\b(?:\\d{4}[-\\s]?){3}\\d{4}\\b"
+      },
+      "action": "Block"
+    },
+    {
+      "content_type": "Address",
+      "example": "123 MG Road, Kochi",
+      "detection": {
+        "type": "regex",
+        "pattern": "\\b\\d{1,4}\\s+[A-Za-z0-9\\s]+(Street|St|Road|Rd|Lane|Ln|Avenue|Ave|Boulevard|Blvd|Nagar|Colony)\\b"
+      },
+      "action": "Mask",
+      "masking_strategy": "full"
+    },
+    {
+      "content_type": "Offensive Word",
+      "example": "stupid",
+      "detection": {
+        "type": "keyword",
+        "replacements": {
+          "stupid": "unwise",
+          "dumb": "uninformed",
+          "fool": "misguided",
+          "idiotic": "illogical",
+          "loser": "unsuccessful",
+          "worthless": "unimportant",
+          "nonsense": "incorrect"
+        }
+      },
+      "action": "Replace"
+    },
+    {
+      "content_type": "Abusive Language",
+      "example": "idiot",
+      "detection": {
+        "type": "keyword",
+        "replacements": {
+          "idiot": "person",
+          "moron": "individual",
+          "jerk": "rude person",
+          "shut up": "please be quiet",
+          "hate you": "dislike you",
+          "ugly": "unpleasant",
+          "trash": "poor quality"
+        }
+      },
+      "action": "Replace"
+    },
+    {
+      "content_type": "Normal Text",
+      "example": "Hello world",
+      "detection": {
+        "type": "none"
+      },
+      "action": "Allow"
+    }
+  ]
+}
