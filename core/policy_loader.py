@@ -90,7 +90,7 @@ class PolicyLoader:
 
 # --------- Test Execution (Phase 3 Testing) ---------
 if __name__ == "__main__":
-    loader = PolicyLoader("an-policy.yaml")
+    loader = PolicyLoader("./config/policy.yaml")
 
     try:
         policies = loader.load_policy_file()
