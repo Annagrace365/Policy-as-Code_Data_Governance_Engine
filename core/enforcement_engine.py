@@ -28,8 +28,9 @@ class EnforcementEngine:
                     sanitized_text = sanitized_text.replace(match, masked)
 
             elif action == "Replace":
-                replacement = policy.get("replacement_value", "[REDACTED]")
+                replacements = policy.get("detection", {}).get("replacements", {})
                 for match in matches:
+                    replacement = replacements.get(match.lower(), "[REDACTED]")
                     sanitized_text = sanitized_text.replace(match, replacement)
 
             elif action == "Block":
