@@ -27,7 +27,7 @@ policies:
     example: "123 MG Road, Kochi"
     detection:
       type: regex
-      pattern: "\\b\\d{1,4}\\s+[A-Za-z0-9\\s]+(Street|St|Road|Rd|Lane|Ln|Avenue|Ave|Boulevard|Blvd|Nagar|Colony)\\b"
+      pattern: "\\b(?:\\d{1,4}\\s+)?(?:[A-Za-z]+\\s+){0,6}(Street|St|Road|Rd|Lane|Ln|Avenue|Ave|Boulevard|Blvd|Nagar|Colony|Layout|Cross|Main|Park)[^.\n]*"
     action: Mask
     masking_strategy: full
 

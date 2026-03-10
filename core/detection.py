@@ -21,8 +21,8 @@ class PIIDetector:
             # Regex detection
             if detection_type == "regex":
                 pattern = detection["pattern"]
-                matches = re.findall(pattern, text)
-
+                matches = [m.group() for m in re.finditer(pattern, text)]
+                print("DEBUG DETECTED:", matches)
                 if matches:
                     detections.append({
                         "content_type": content_type,
