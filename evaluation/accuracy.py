@@ -1,6 +1,9 @@
 import os
 import re
 import time
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from evaluation.test_cases import test_cases
 from core.policy_loader import PolicyLoader

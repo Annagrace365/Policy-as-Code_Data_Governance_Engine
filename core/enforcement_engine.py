@@ -23,8 +23,12 @@ class EnforcementEngine:
             action = policy["action"]
 
             if action == "Mask":
+                strategy = policy.get("masking_strategy", "partial")
                 for match in matches:
-                    masked = self._mask_value(match)
+                    if strategy == "full":
+                        masked = "*" * len(match)
+                    else:
+                        masked = self._mask_value(match)
                     sanitized_text = sanitized_text.replace(match, masked)
 
             elif action == "Replace":
